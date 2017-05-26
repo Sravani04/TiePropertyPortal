@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.viralandroid.tiepropertyportal">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/tieapp_icon1"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".LoginPage"></activity>
+        <activity android:name=".AgentsEditProfile"></activity>
+        <activity android:name=".CallbackCustomersPage"></activity>
+        <activity android:name=".NewPropertyScreen"></activity>
+        <activity android:name=".SiteVisitScreen"></activity>
+        <activity android:name=".AgentsPage"></activity>
+        <activity android:name=".CommissionsPage"></activity>
+        <activity android:name=".CommissionList"></activity>
+        <activity android:name=".AgentsRegisterPage"></activity>
+        <activity android:name=".OffersListActivity"></activity>
+        <activity android:name=".PortalScreen"></activity>
+        <activity android:name=".EditBasPage"></activity>
+        <activity android:name=".VisitScreen"></activity>
+        <activity android:name=".PropertiesListActivity"></activity>
+    </application>
+
+</manifest>

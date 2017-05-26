@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#0D5097">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/close_btn"
+                android:adjustViewBounds="true"
+                android:layout_marginLeft="5dp"
+                android:tint="#ffffff"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="3dp" />
+            <TextView
+                android:text="Add Visit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView2"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:layout_marginRight="5dp"
+                android:textColor="#ffffff"
+                android:textStyle="normal|bold"
+                android:textSize="18sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:id="@+id/textView14"
+                    android:text="Name"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="14sp"
+                    android:textColor="#000" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/name"
+                    android:background="@drawable/border"
+                    android:hint="Name"
+                    android:textColorHint="#000"
+                    android:textColor="#000"
+                    android:paddingLeft="10dp"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:text="Phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:id="@+id/textView17"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="#000" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:id="@+id/phone"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/border"
+                    android:hint="Phone"
+                    android:textColorHint="#000"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:inputType="phone" />
+
+                <TextView
+                    android:text="Address"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:id="@+id/textView21"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="#000" />
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/address"
+                    android:hint="Address"
+                    android:textSize="15sp"
+                    android:textColor="#000"
+                    android:background="@drawable/border"
+                    android:textColorHint="#000"
+                    android:paddingLeft="10dp"
+                    android:layout_marginTop="5dp" />
+
+                <TextView
+                    android:text="Date"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:id="@+id/textView22"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="date"
+                    android:ems="10"
+                    android:id="@+id/date"
+                    android:textSize="15sp"
+                    android:textColor="#000"
+                    android:background="@drawable/border"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:textColorHint="#000"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    android:text="Time"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:id="@+id/textView23"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="time"
+                    android:ems="10"
+                    android:id="@+id/time"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/border"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textColorHint="#000"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:id="@+id/textView16"
+                    android:text="Property"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="14sp"
+                    android:textColor="#000"
+                    android:layout_marginTop="5dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/property"
+                    android:background="@drawable/border"
+                    android:hint="Property"
+                    android:textColorHint="#000"
+                    android:textColor="#000"
+                    android:paddingLeft="10dp"
+                    android:textSize="15sp"
+                    android:gravity="center_vertical" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="15dp">
+
+                    <TextView
+                        android:text="SUBMIT"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/submit_btn"
+                        android:textColor="#000"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:background="@drawable/submit_btn_corners"
+                        android:textStyle="normal|bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/menu_btn"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/menu"
+                android:tint="#0D5097" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView9"
+                android:gravity="center_vertical"
+                android:textColor="#0D5097"
+                android:paddingLeft="5dp"
+                android:textStyle="normal|bold"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/edit_profile"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:text="LogOut"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/logout_btn"
+                android:gravity="center_vertical|center_horizontal"
+                android:textColor="#0D5097"
+                android:textStyle="normal|bold"
+                android:layout_marginRight="10dp"
+                android:textSize="18sp"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+
+
+
+        <android.support.v4.widget.SlidingPaneLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/sliding_pane_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:background="#CCCCCC">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#ffffff">
+
+                    <TextView
+                        android:text="Agents"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/agents"
+                        android:textColor="#000"
+                        android:textSize="15sp"
+                        android:textStyle="normal|bold"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp" />
+
+                    <TextView
+                        android:text="Callback Customers"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/callback_customers"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:textColor="#000"
+                        android:textStyle="normal|bold"
+                        android:textSize="15sp"
+                        android:layout_marginTop="10dp" />
+
+                    <TextView
+                        android:text="Commissions"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/commissions"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:textColor="#000"
+                        android:textStyle="normal|bold"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:text="New Properties"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/new_property"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"
+                        android:textStyle="normal|bold"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:text="Properties"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/properties"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"
+                        android:textStyle="normal|bold"
+                        android:textSize="15sp" />
+
+                    <TextView android:text="Site Visits"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/site_visits"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"
+                        android:textStyle="normal|bold"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:text="My Account"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/my_account"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#000"
+                        android:textStyle="normal|bold"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="15dp">
+
+                        <TextView
+                            android:text="Welcome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/textView42"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:textSize="16sp"
+                            android:textColor="#000" />
+
+                        <TextView
+                            android:text="TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/agent_name"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="16sp"
+                            android:textColor="#0D5097" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="15dp">
+
+                        <TextView
+                            android:text="Code :"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/textView44"
+                            android:layout_weight="1"
+                            android:gravity="right|center_vertical"
+                            android:textSize="16sp"
+                            android:textColor="#000" />
+
+                        <TextView
+                            android:text="TextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/agent_code"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="16sp"
+                            android:textColor="#0D5097" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp">
+
+                            <TextView
+                                android:text="Total Commission Amount (₹)"
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/textView46"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp" />
+
+                            <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/tot_comm_amt"
+                                android:layout_weight="1"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:text="Total TDS Amount (₹)"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/textView48"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp" />
+
+                            <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/tot_tds_amt"
+                                android:layout_weight="1"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/textView50"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:text="Total Payable Amount (₹)" />
+
+                            <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/tot_pay_amt"
+                                android:layout_weight="1"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:text="Total Site Visits (₹)"
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/textView52"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp" />
+
+                            <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/tot_site_visit"
+                                android:layout_weight="1"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:text="Deducted Site Visits (₹)"
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/textView54"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp" />
+
+                            <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/ded_site_visits"
+                                android:layout_weight="1"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:text="Total Amount (₹)"
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/textView56"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp" />
+
+                            <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/tot_amt"
+                                android:layout_weight="1"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:text="Paid Amount (₹)"
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/textView58"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp" />
+
+                            <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/paid_amt"
+                                android:layout_weight="1"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp">
+
+                            <TextView
+                                android:text="Balance Amount (₹)"
+                                android:layout_width="140dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/textView60"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp" />
+
+                            <TextView
+                                android:text="TextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:id="@+id/balance_amt"
+                                android:layout_weight="1"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/border"
+                                android:gravity="center_vertical"
+                                android:paddingLeft="10dp"
+                                android:textColor="#000" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+            </ScrollView>
+        </android.support.v4.widget.SlidingPaneLayout>
+
+    </LinearLayout>
+</LinearLayout>

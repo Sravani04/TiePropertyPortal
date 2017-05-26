@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#64424242">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView20"
+            android:scaleType="centerCrop"
+            android:src="@drawable/select_city" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/header">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:id="@+id/close_btn"
+                        android:adjustViewBounds="true"
+                        android:layout_marginLeft="5dp"
+                        android:tint="#ffffff"
+                        android:src="@android:drawable/ic_menu_close_clear_cancel"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="3dp" />
+                    <ImageView
+                        android:id="@+id/imageView18"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="200dp"
+                        android:src="@drawable/tie_app_logo_new"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:id="@+id/textView28"
+                        android:textColor="#d4ced0"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:textStyle="normal|bold"
+                        android:layout_below="@+id/header"
+                        android:layout_above="@+id/city"
+                        android:layout_marginTop="10dp" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/footer"
+                android:id="@+id/city"
+                android:layout_marginBottom="5dp"
+                android:layout_centerHorizontal="false"
+                android:layout_below="@+id/header"
+                android:layout_marginTop="40dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="textEmailAddress"
+                        android:ems="10"
+                        android:id="@+id/email"
+                        android:background="@drawable/rectangle"
+                        android:hint="Email"
+                        android:textColorHint="#ffffff"
+                        android:paddingLeft="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="#ffffff" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="textPassword"
+                        android:ems="10"
+                        android:id="@+id/password"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rectangle"
+                        android:hint="Password"
+                        android:textColorHint="#ffffff"
+                        android:paddingLeft="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:textColor="#ffffff" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp">
+
+                    <TextView
+                        android:text="LOGIN"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/submit_btn"
+                        android:textColor="#000"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:background="@drawable/submit_btn_corners"
+                        android:textStyle="normal|bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

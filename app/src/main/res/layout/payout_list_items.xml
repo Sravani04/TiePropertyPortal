@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+            <TextView
+                android:text="Amount"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView49"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/amount"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:text="Date"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView50"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/date"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:text="Voucher No"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView51"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/voucher_no"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:text="Description"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView52"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/description"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="#000" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

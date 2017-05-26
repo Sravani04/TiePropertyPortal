@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+
+            <TextView
+                android:text="Title"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView35"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/title"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="TextView"
+                android:textStyle="normal|bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:text="Name"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView36"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/name"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="TextView"
+                android:textStyle="normal|bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:text="Phone"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView37"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/phone"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="TextView"
+                android:textStyle="normal|bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:text="Address"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView38"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/address"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textStyle="normal|bold"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:text="City"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView39"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/city"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="TextView"
+                android:textStyle="normal|bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:text="Area"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView40"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/area"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textStyle="normal|bold"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:text="Type"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:id="@+id/textView41"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/type"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textStyle="normal|bold"
+                android:text="TextView" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
