@@ -62,10 +62,11 @@
             </LinearLayout>
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
                 android:id="@+id/edit_ba"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="center"
+                android:padding="7dp"
                 android:src="@drawable/edit_image" />
         </LinearLayout>
 

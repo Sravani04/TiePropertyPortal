@@ -4,35 +4,10 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/logos"
-            android:background="#024EA3"
-            android:visibility="visible">
-
-            <ImageView
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/logo"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_marginTop="40dp"
-                android:src="@drawable/tie_app_logo_new" />
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:id="@+id/imageView7"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/scetch_image" />
-    </RelativeLayout>
-
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/tieapp_landing" />
 </LinearLayout>

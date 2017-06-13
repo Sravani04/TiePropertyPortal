@@ -9,7 +9,7 @@ import android.preference.PreferenceManager;
  */
 
 public class Session {
-    public static String SERVER_URL = "http://tieproperty.in/api/";
+    public static String SERVER_URL = "https://tieproperty.in/api/";
 
     public  static  final String mem_id="mem_id";
     public  static  final String mem_name="mem_name";

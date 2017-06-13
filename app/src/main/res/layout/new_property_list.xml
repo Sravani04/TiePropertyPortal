@@ -17,30 +17,27 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
                 android:id="@+id/back_btn"
-                android:layout_marginTop="7dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="12dp"
                 android:src="@drawable/back_arrow" />
 
             <TextView
-                android:text="New Properties List"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
                 android:id="@+id/textView26"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal"
+                android:text="New Properties List"
                 android:textColor="#0D5097"
                 android:textStyle="normal|bold" />
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
                 android:id="@+id/add_new_property"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="9dp"
                 android:src="@drawable/plus_icon" />
 
         </LinearLayout>

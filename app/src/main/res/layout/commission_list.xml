@@ -17,12 +17,10 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="20dp"
                 android:id="@+id/close_btn"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="9dp"
                 android:src="@android:drawable/ic_menu_close_clear_cancel"
                 android:tint="#0D5097" />
 
