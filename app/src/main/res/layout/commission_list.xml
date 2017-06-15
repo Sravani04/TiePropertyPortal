@@ -17,20 +17,22 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/close_btn"
+                android:id="@+id/back_btn"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:padding="9dp"
-                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:layout_gravity="center_vertical"
+                android:adjustViewBounds="true"
+                android:padding="12dp"
+                android:src="@drawable/left"
                 android:tint="#0D5097" />
 
             <TextView
-                android:text="Commissions List"
+                android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/textView26"
                 android:layout_weight="1"
                 android:gravity="center_vertical|center_horizontal"
+                android:text="Commissions List"
                 android:textColor="#0D5097"
                 android:textStyle="normal|bold" />
 
@@ -46,22 +48,21 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="3dp"
-        android:layout_marginBottom="5dp"
-        android:background="#000000"></LinearLayout>
+        android:background="#000000"
+        android:orientation="vertical"></LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp">
+        android:orientation="vertical">
 
         <ListView
+            android:id="@+id/commissions_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/commissions_list" />
+            android:background="#d3d3d3" />
     </LinearLayout>
 </LinearLayout>

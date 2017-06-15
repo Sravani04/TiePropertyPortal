@@ -46,22 +46,21 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="3dp"
-        android:layout_marginBottom="5dp"
-        android:background="#000000"></LinearLayout>
+        android:background="#000000"
+        android:orientation="vertical"></LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp">
+        android:orientation="vertical">
 
         <ListView
+            android:id="@+id/properties_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/properties_list" />
+            android:background="#d3d3d3" />
     </LinearLayout>
 </LinearLayout>
