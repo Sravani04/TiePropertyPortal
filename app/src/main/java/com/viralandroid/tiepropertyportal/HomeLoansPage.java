@@ -10,6 +10,7 @@ import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,12 +43,14 @@ public class HomeLoansPage extends Activity {
     ImageView back_btn,add_home_loan,edit_btn;
     TextView type,bank;
     String bank_id;
+    SwipeRefreshLayout swipeRefreshLayout;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_loan_list);
 
         recyclerView = (RecyclerView) findViewById(R.id.home_loan_list);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         back_btn = (ImageView) findViewById(R.id.back_btn);
         add_home_loan = (ImageView) findViewById(R.id.add_home_loan);
 
@@ -65,6 +68,15 @@ public class HomeLoansPage extends Activity {
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                finish();
+                startActivity(getIntent());
+            }
+        });
 
 
 

@@ -51,10 +51,19 @@
         android:background="#000000"
         android:orientation="vertical"></LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/home_loan_list"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeToRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#d3d3d3" />
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_loan_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#d3d3d3" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 </LinearLayout>

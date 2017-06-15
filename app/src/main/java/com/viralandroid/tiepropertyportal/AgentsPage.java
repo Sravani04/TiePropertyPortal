@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,7 @@ public class AgentsPage extends Activity{
     ImageView item_image;
     int ASK_MULTIPLE_PERMISSION_REQUEST_CODE;
     ArrayList<Cities> citiesfrom_api;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -62,6 +64,7 @@ public class AgentsPage extends Activity{
                 AgentsPage.this.onBackPressed();
             }
         });
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         listView = (ListView) findViewById(R.id.agents_list);
         agentsfrom_api = new ArrayList<>();
         citiesfrom_api = new ArrayList<>();
@@ -72,6 +75,15 @@ public class AgentsPage extends Activity{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+            }
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                finish();
+                startActivity(getIntent());
             }
         });
 

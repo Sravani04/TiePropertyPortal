@@ -10,6 +10,7 @@ import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -46,11 +47,13 @@ public class CallbackCustomersPage extends Activity {
     ArrayList<CallbackCustomers> callbackCustomersfrom_api;
     ArrayList<Properties> propertiesfrom_api;
     CallbackCustomersAdapter adapter;
+    SwipeRefreshLayout swipeRefreshLayout;
     public void onCreate(Bundle savedinstanceState) {
         super.onCreate(savedinstanceState);
         setContentView(R.layout.add_callback_customer_list);
         add_call = (ImageView) findViewById(R.id.add_call);
         recyclerView = (RecyclerView) findViewById(R.id.callback_customers_list);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         back_btn = (ImageView) findViewById(R.id.back_btn);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +72,15 @@ public class CallbackCustomersPage extends Activity {
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                finish();
+                startActivity(getIntent());
+            }
+        });
 
 
         add_call.setOnClickListener(new View.OnClickListener() {
@@ -178,6 +190,11 @@ public class CallbackCustomersPage extends Activity {
         });
         get_callback_customers();
         get_properties();
+    }
+
+
+    public void bindMyReclyclerView(){
+
     }
 
     public void get_callback_customers(){

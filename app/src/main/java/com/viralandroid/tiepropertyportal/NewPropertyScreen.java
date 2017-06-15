@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class NewPropertyScreen extends Activity {
     TextView city;
     TextView area,type;
     int position;
+    SwipeRefreshLayout swipeRefreshLayout;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -57,12 +59,22 @@ public class NewPropertyScreen extends Activity {
         categoriesfrom_api = new ArrayList<>();
         citiesfrom_api = new ArrayList<>();
         listView = (ListView) findViewById(R.id.new_property_list);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         adapter = new NewPropertyScreenAdapter(this,newPropertiesfrom_api);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+            }
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                finish();
+                startActivity(getIntent());
             }
         });
 

@@ -58,11 +58,20 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/agents_list"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeToRefresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#d3d3d3"
-            android:divider="@null" />
+            android:layout_height="wrap_content">
+
+            <ListView
+                android:id="@+id/agents_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#d3d3d3"
+                android:divider="@null" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
     </LinearLayout>
 </LinearLayout>

@@ -11,6 +11,7 @@ import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,7 @@ public class SiteVisitScreen extends Activity{
     ArrayList<Properties> propertiesfrom_api;
     TextView property;
     String prop_id;
+    SwipeRefreshLayout swipeRefreshLayout;
     @Override
     public void onCreate(Bundle savedInstanceState){
       super.onCreate(savedInstanceState);
@@ -59,12 +61,22 @@ public class SiteVisitScreen extends Activity{
         siteVisitsfrom_api = new ArrayList<>();
         propertiesfrom_api = new ArrayList<>();
         listView = (ListView) findViewById(R.id.visit_list);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         adapter = new SiteVisitAdapter(this,siteVisitsfrom_api);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+            }
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                finish();
+                startActivity(getIntent());
             }
         });
         add_visit = (ImageView) findViewById(R.id.add_visit);
