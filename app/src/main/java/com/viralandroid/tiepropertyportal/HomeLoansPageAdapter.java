@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ public class HomeLoansPageAdapter extends RecyclerView.Adapter<HomeLoansPageAdap
     LayoutInflater inflater;
     ArrayList<HomeLoans> homeLoans;
     ArrayList<Banks> banks;
+    int lastPosition = -1;
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder{
         TextView name,address,phone,email,property,type,bank;
@@ -77,6 +80,13 @@ public class HomeLoansPageAdapter extends RecyclerView.Adapter<HomeLoansPageAdap
                 mContext.startActivity(intent);
             }
         });
+
+        if (position > lastPosition){
+            Animation animation = AnimationUtils.loadAnimation(mContext,R.anim.animation);
+            holder.itemView.startAnimation(animation);
+            lastPosition = position;
+        }
+
 
     }
 

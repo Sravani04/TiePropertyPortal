@@ -43,6 +43,13 @@ public class EditHomeLoanPage extends Activity {
         type = (TextView) findViewById(R.id.type);
         bank = (TextView) findViewById(R.id.bank);
         submit_btn = (TextView) findViewById(R.id.submit_btn);
+        back_btn = (ImageView) findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditHomeLoanPage.this.onBackPressed();
+            }
+        });
         banksfrom_api = new ArrayList<>();
 
 
