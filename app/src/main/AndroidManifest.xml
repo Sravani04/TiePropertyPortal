@@ -33,6 +33,8 @@
         <activity android:name=".EditBasPage"></activity>
         <activity android:name=".VisitScreen"></activity>
         <activity android:name=".PropertiesListActivity"></activity>
+        <activity android:name=".HomeLoansPage"></activity>
+        <activity android:name=".EditHomeLoanPage"></activity>
     </application>
 
 </manifest>
