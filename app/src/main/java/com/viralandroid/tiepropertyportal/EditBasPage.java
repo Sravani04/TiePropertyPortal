@@ -141,7 +141,7 @@ public class EditBasPage extends Activity {
                     pan_card.requestFocus();
                 }else {
                     Ion.with(getApplicationContext())
-                            .load(Session.SERVER_URL+"add-ba.php")
+                            .load(Session.SERVER_URL+"edit-ba.php")
                             .setBodyParameter("agent_id",Session.GetUserId(EditBasPage.this))
                             .setBodyParameter("fname",firstname_string)
                             .setBodyParameter("lname",lastname_string)

@@ -46,7 +46,7 @@ public class PropertiesListActivity extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                openApp(PropertiesListActivity.this,"com.viralandroid.tieproperty",propertiesfrom_api.get(i));
+                openApp(PropertiesListActivity.this,"in.tieproperty.app",propertiesfrom_api.get(i));
             }
 
 
@@ -93,4 +93,6 @@ public class PropertiesListActivity extends Activity {
         context.startActivity(intent);
         return true;
     }
+
+
 }

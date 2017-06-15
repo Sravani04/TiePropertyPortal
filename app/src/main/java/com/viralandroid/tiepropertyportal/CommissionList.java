@@ -13,7 +13,7 @@ import android.widget.ListView;
  */
 
 public class CommissionList extends Activity {
-    ImageView close_btn;
+    ImageView back_btn;
     ListView listView;
     CommissionsPageAdapter adapter;
     Commissions commissions_obj;
@@ -22,7 +22,7 @@ public class CommissionList extends Activity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.commission_list);
-        close_btn = (ImageView) findViewById(R.id.close_btn);
+        back_btn = (ImageView) findViewById(R.id.back_btn);
         listView = (ListView) findViewById(R.id.commissions_list);
         try {
             if (getIntent() != null && getIntent().hasExtra("commissions")) {
@@ -41,10 +41,10 @@ public class CommissionList extends Activity {
             }
         });
 
-        close_btn.setOnClickListener(new View.OnClickListener() {
+        back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                CommissionList.this.onBackPressed();
             }
         });
     }

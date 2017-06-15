@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class MainActivity extends Activity {
     ImageView back_btn,agent_image;
     TextView agent_name;
-    LinearLayout agents,callback_customers,commissions,new_property,properties,site_visits,logout_btn,edit_btn,offers_list,ba_line,offer_line,new_property_line;
+    LinearLayout agents,callback_customers,commissions,new_property,properties,site_visits,logout_btn,edit_btn,offers_list,ba_line,offer_line,new_property_line,home_laons;
     String name,image;
     String comm_amt,tds,pay,site,ded,tot,paid,bal,agent,id;
     String first_name,last_name,email,password,address,city_title,state,phone,aadhar,pan;
@@ -46,6 +46,7 @@ public class MainActivity extends Activity {
         ba_line = (LinearLayout) findViewById(R.id.ba_line);
         offer_line = (LinearLayout) findViewById(R.id.offer_line);
         new_property_line = (LinearLayout) findViewById(R.id.new_property_line);
+        home_laons = (LinearLayout) findViewById(R.id.home_loans);
         citiesfrom_api = new ArrayList<>();
 
         if (getIntent()!=null && getIntent().hasExtra("agent_name")){
@@ -158,6 +159,14 @@ public class MainActivity extends Activity {
                 Intent properties = new Intent(MainActivity.this,PropertiesListActivity.class);
                 startActivity(properties);
 
+            }
+        });
+
+        home_laons.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,HomeLoansPage.class);
+                startActivity(intent);
             }
         });
 

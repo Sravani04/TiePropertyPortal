@@ -10,6 +10,8 @@ import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +39,7 @@ import java.util.ArrayList;
 
 public class CallbackCustomersPage extends Activity {
     ImageView add_call,back_btn;
-    ListView listView;
+    RecyclerView recyclerView;
     String agent_id,property_id;
     TextView date;
     TextView property;
@@ -48,7 +50,7 @@ public class CallbackCustomersPage extends Activity {
         super.onCreate(savedinstanceState);
         setContentView(R.layout.add_callback_customer_list);
         add_call = (ImageView) findViewById(R.id.add_call);
-        listView = (ListView) findViewById(R.id.callback_customers_list);
+        recyclerView = (RecyclerView) findViewById(R.id.callback_customers_list);
         back_btn = (ImageView) findViewById(R.id.back_btn);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,13 +66,9 @@ public class CallbackCustomersPage extends Activity {
         }
 
         adapter = new CallbackCustomersAdapter(this,callbackCustomersfrom_api);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-        });
+        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
         add_call.setOnClickListener(new View.OnClickListener() {
