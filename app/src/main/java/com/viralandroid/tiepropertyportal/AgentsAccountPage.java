@@ -12,8 +12,11 @@ import android.widget.TextView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+
+import java.util.ArrayList;
 
 /**
  * Created by T on 17-05-2017.
@@ -25,6 +28,7 @@ public class AgentsAccountPage extends Activity {
     LinearLayout agents,callback_customers,commissions,new_property,properties,site_visits,logout_btn,edit_btn;
     String name,image;
     String comm_amt,tds,pay,site,ded,tot,paid,bal,agent,id;
+    ArrayList<Cities> citiesfrom_api;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -40,6 +44,8 @@ public class AgentsAccountPage extends Activity {
         back_btn = (ImageView) findViewById(R.id.back_btn);
         logout_btn = (LinearLayout) findViewById(R.id.logout_btn);
         agent_image = (ImageView) findViewById(R.id.agent_image);
+
+        citiesfrom_api = new ArrayList<>();
 
 
         if (getIntent()!=null && getIntent().hasExtra("agent_name")){
@@ -104,6 +110,7 @@ public class AgentsAccountPage extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AgentsAccountPage.this,NewPropertyScreen.class);
+                intent.putExtra("cities",citiesfrom_api);
                 startActivity(intent);
             }
         });
@@ -125,7 +132,14 @@ public class AgentsAccountPage extends Activity {
             }
         });
 
-
+        JsonParser jsonParser = new JsonParser();
+        if (!Session.GetCities(AgentsAccountPage.this).equals("-1")){
+            JsonArray jsonArray = (JsonArray) jsonParser.parse(Session.GetCities(AgentsAccountPage.this));
+            for (int i=0;i<jsonArray.size();i++){
+                Cities cities = new Cities(jsonArray.get(i).getAsJsonObject(),AgentsAccountPage.this);
+                citiesfrom_api.add(cities);
+            }
+        }
 
         get_agents();
 
@@ -156,5 +170,7 @@ public class AgentsAccountPage extends Activity {
                 });
 
     }
+
+
 
 }

@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
@@ -47,11 +49,14 @@ public class SiteVisitScreen extends Activity{
     TextView property;
     String prop_id;
     SwipeRefreshLayout swipeRefreshLayout;
+    LinearLayout progress_holder;
     @Override
     public void onCreate(Bundle savedInstanceState){
       super.onCreate(savedInstanceState);
         setContentView(R.layout.site_visit_list);
         back_btn = (ImageView) findViewById(R.id.back_btn);
+        progress_holder = (LinearLayout) findViewById(R.id.progress_holder);
+        progress_holder.setVisibility(View.GONE);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,6 +84,16 @@ public class SiteVisitScreen extends Activity{
                 startActivity(getIntent());
             }
         });
+//
+//        JsonParser jsonParser = new JsonParser();
+//        if (!Session.GetAreas(SiteVisitScreen.this).equals("-1")){
+//            JsonArray jsonArray = (JsonArray) jsonParser.parse(Session.GetAreas(SiteVisitScreen.this));
+//            for (int i=0;i<jsonArray.size();i++){
+//                Properties properties = new Properties(jsonArray.get(i).getAsJsonObject(),SiteVisitScreen.this);
+//                propertiesfrom_api.add(properties);
+//            }
+//        }
+
         add_visit = (ImageView) findViewById(R.id.add_visit);
         add_visit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,6 +229,15 @@ public class SiteVisitScreen extends Activity{
         get_site_visits();
         get_properties();
 
+
+    }
+
+    public void show_progress(){
+        progress_holder.setVisibility(View.VISIBLE);
+    }
+
+    public void hide_progress(){
+        progress_holder.setVisibility(View.GONE);
     }
 
     public Dialog onCreateDialogSingleChoice() {
@@ -253,12 +277,32 @@ public class SiteVisitScreen extends Activity{
         return builder.create();
     }
 
+    public void get_properties(){
+      show_progress();
+        Ion.with(this)
+                .load(Session.SERVER_URL+"ad-properties.php")
+                .setBodyParameter("agent_id","6")
+                .asJsonArray()
+                .setCallback(new FutureCallback<JsonArray>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonArray result) {
+                        try {
+                         hide_progress();
+                            Log.e("res",result.toString());
+                            for (int i = 0; i < result.size(); i++) {
+                                Properties properties = new Properties(result.get(i).getAsJsonObject(), SiteVisitScreen.this);
+                                propertiesfrom_api.add(properties);
+                            }
+                            adapter.notifyDataSetChanged();
+                        }catch (Exception e1){
+                            e1.printStackTrace();
+                        }
+                    }
+                });
+    }
 
     public void get_site_visits(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait..");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        show_progress();
         Ion.with(this)
                 .load(Session.SERVER_URL+"site-visits.php")
                 .setBodyParameter("agent_id",Session.GetUserId(this))
@@ -266,8 +310,7 @@ public class SiteVisitScreen extends Activity{
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
+                       hide_progress();
                         for (int i=0;i<result.size();i++){
                             SiteVisits siteVisits = new SiteVisits(result.get(i).getAsJsonObject(),SiteVisitScreen.this);
                             siteVisitsfrom_api.add(siteVisits);
@@ -279,47 +322,6 @@ public class SiteVisitScreen extends Activity{
 
 
 
-    public void get_properties(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        Ion.with(this)
-                .load(Session.SERVER_URL+"properties.php")
-                .asJsonArray()
-                .withResponse()
-                .setCallback(new FutureCallback<Response<JsonArray>>() {
-                    @Override
-                    public void onCompleted(Exception e, Response<JsonArray> result) {
-                        try {
-                            if (progressDialog != null)
-                                progressDialog.dismiss();
-                            Log.e("response", result.getServedFrom().toString());
-
-
-                            if (e != null) {
-                                e.printStackTrace();
-                                Log.e("error", e.getLocalizedMessage());
-
-                            } else
-                                try {
-                                    for (int i = 0; i < result.getResult().size(); i++) {
-                                        Properties properties = new Properties(result.getResult().get(i).getAsJsonObject(), SiteVisitScreen.this);
-                                        propertiesfrom_api.add(properties);
-                                    }
-                                    adapter.notifyDataSetChanged();
-
-                                } catch (Exception e1) {
-                                    e1.printStackTrace();
-                                }
-                        }catch (Exception e1){
-                            e1.printStackTrace();
-                        }
-
-
-                    }
-                });
-    }
 
     public Dialog onCreateDialogSingleChoiceProperties() {
 
@@ -330,7 +332,7 @@ public class SiteVisitScreen extends Activity{
 
             array[i] = propertiesfrom_api.get(i).title+"  "+propertiesfrom_api.get(i).prop_code;
         }
-        builder.setTitle("Select City").setSingleChoiceItems(array, 0, new DialogInterface.OnClickListener() {
+        builder.setTitle("Select Property").setSingleChoiceItems(array, 0, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int i) {

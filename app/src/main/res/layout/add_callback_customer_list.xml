@@ -21,7 +21,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:padding="12dp"
-                android:src="@drawable/back_arrow" />
+                android:src="@drawable/ic_back_btn" />
 
             <TextView
                 android:text="Callback Customers List"
@@ -51,15 +51,41 @@
         android:background="#000000"
         android:orientation="vertical"></LinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeToRefresh"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/callback_customers_list"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#d3d3d3" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:gravity="center"
+            android:paddingBottom="50dp"
+            android:id="@+id/progress_holder">
+
+        <com.singh.daman.proprogressviews.DottedArcProgress
+            android:id="@+id/progress_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/progress_rounded_corners"
+            app:dots_color="@android:color/holo_red_dark"
+            app:dots_radius="30dp" />
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeToRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/callback_customers_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </RelativeLayout>
+
+
+
+
 </LinearLayout>

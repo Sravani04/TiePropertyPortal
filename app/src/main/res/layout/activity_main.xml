@@ -123,7 +123,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingLeft="5dp"
-                        android:text="My Profile"
+                        android:text="My Details"
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
@@ -312,6 +312,90 @@
                     android:orientation="vertical"></LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/sales_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="Sales List"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/imageView22"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:padding="13dp"
+                        android:src="@drawable/right_new"
+                        android:tint="#0D5097" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/sales_list_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#d3d3d3"
+                    android:orientation="vertical"></LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/bas_site_vists"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="BA'S Site Visits"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/imageView25"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:padding="13dp"
+                        android:src="@drawable/right_new"
+                        android:tint="#0D5097" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ba_site_visit_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#d3d3d3"
+                    android:orientation="vertical"></LinearLayout>
+
+
+                <LinearLayout
                     android:id="@+id/properties"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -351,6 +435,47 @@
                     android:background="#d3d3d3"
                     android:orientation="vertical"></LinearLayout>
 
+
+                <LinearLayout
+                    android:id="@+id/trending_properties"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="Trending Properties"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/imageView24"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:padding="13dp"
+                        android:src="@drawable/right_new"
+                        android:tint="#0D5097" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#d3d3d3"
+                    android:orientation="vertical"></LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/site_visits"
                     android:layout_width="match_parent"
@@ -366,7 +491,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingLeft="5dp"
-                        android:text="Site Visits"
+                        android:text="My Site Visits"
                         android:textColor="#000000"
                         android:textSize="15sp" />
 
@@ -391,52 +516,11 @@
                     android:background="#d3d3d3"
                     android:orientation="vertical"></LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/offer_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="5dp"
-                        android:text="Offers List"
-                        android:textColor="#000000"
-                        android:textSize="15sp" />
-
-                    <ImageView
-                        android:id="@+id/imageView54"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center_vertical"
-                        android:adjustViewBounds="true"
-                        android:padding="13dp"
-                        android:src="@drawable/right_new"
-                        android:tint="#0D5097" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="5dp"
-                    android:background="#d3d3d3"
-                    android:orientation="vertical"></LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/home_loans"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
@@ -463,6 +547,49 @@
                         android:tint="#0D5097" />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#d3d3d3"
+                    android:orientation="vertical"></LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/reports_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5dp"
+                        android:text="Reports List"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:id="@+id/imageView54"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:padding="13dp"
+                        android:src="@drawable/right_new"
+                        android:tint="#0D5097" />
+
+                </LinearLayout>
+
+
+
 
 
             </LinearLayout>

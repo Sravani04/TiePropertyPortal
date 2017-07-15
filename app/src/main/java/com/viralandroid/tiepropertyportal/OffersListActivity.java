@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.gson.JsonArray;
@@ -23,6 +24,7 @@ public class OffersListActivity extends Activity {
     ListView listView;
     OffersListAdapter adapter;
     ArrayList<OffersList> offersListsfrom_api;
+    LinearLayout progress_holder;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -30,6 +32,8 @@ public class OffersListActivity extends Activity {
         offersListsfrom_api = new ArrayList<>();
         listView = (ListView) findViewById(R.id.offer_list);
         back_btn = (ImageView) findViewById(R.id.back_btn);
+        progress_holder = (LinearLayout) findViewById(R.id.progress_holder);
+        progress_holder.setVisibility(View.GONE);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,19 +55,23 @@ public class OffersListActivity extends Activity {
 
     }
 
+    public void show_progress(){
+        progress_holder.setVisibility(View.VISIBLE);
+    }
+
+    public void hide_progress(){
+        progress_holder.setVisibility(View.GONE);
+    }
+
     public void get_offers_lists(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait..");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        show_progress();
         Ion.with(this)
                 .load(Session.SERVER_URL+"offers.php")
                 .asJsonArray()
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
+                        hide_progress();
                         for (int i=0;i<result.size();i++){
                             OffersList offersList = new OffersList(result.get(i).getAsJsonObject(),OffersListActivity.this);
                             offersListsfrom_api.add(offersList);

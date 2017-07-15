@@ -14,12 +14,14 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
@@ -42,12 +44,15 @@ public class NewPropertyScreen extends Activity {
     TextView area,type;
     int position;
     SwipeRefreshLayout swipeRefreshLayout;
+    LinearLayout progress_holder;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_property_list);
         back_btn = (ImageView) findViewById(R.id.back_btn);
         add_new_property = (ImageView) findViewById(R.id.add_new_property);
+        progress_holder = (LinearLayout) findViewById(R.id.progress_holder);
+        progress_holder.setVisibility(View.GONE);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +83,23 @@ public class NewPropertyScreen extends Activity {
             }
         });
 
+        JsonParser jsonParser = new JsonParser();
+        if (!Session.GetCities(NewPropertyScreen.this).equals("-1")){
+            JsonArray jsonArray = (JsonArray) jsonParser.parse(Session.GetCities(NewPropertyScreen.this));
+            for (int i=0;i<jsonArray.size();i++){
+                Cities cities = new Cities(jsonArray.get(i).getAsJsonObject(),NewPropertyScreen.this);
+                citiesfrom_api.add(cities);
+            }
+        }
 
+        JsonParser parser = new JsonParser();
+        if (!Session.GetCategories(NewPropertyScreen.this).equals("-1")){
+            JsonArray array = (JsonArray) parser.parse(Session.GetCategories(NewPropertyScreen.this));
+            for (int i=0;i<array.size();i++){
+                Category category = new Category(array.get(i).getAsJsonObject(),NewPropertyScreen.this,false);
+                categoriesfrom_api.add(category);
+            }
+        }
 
         add_new_property.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +140,7 @@ public class NewPropertyScreen extends Activity {
                         dialog.show();
                     }
                 });
+
                 submit_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -190,18 +212,23 @@ public class NewPropertyScreen extends Activity {
             }
         });
         get_new_properties_list();
-        get_cities();
+        //get_cities();
 
-        get_categories();
+        //get_categories();
 
 
     }
 
+    public void show_progress(){
+        progress_holder.setVisibility(View.VISIBLE);
+    }
+
+    public void hide_progress(){
+        progress_holder.setVisibility(View.GONE);
+    }
+
     public void get_new_properties_list(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait..");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        show_progress();
         Ion.with(getApplicationContext())
                 .load(Session.SERVER_URL+"new-properties.php")
                 .setBodyParameter("agent_id",Session.GetUserId(getApplicationContext()))
@@ -209,8 +236,7 @@ public class NewPropertyScreen extends Activity {
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
+                        hide_progress();
                         for (int i=0;i<result.size();i++){
                             NewProperties newProperties = new NewProperties(result.get(i).getAsJsonObject(),getApplicationContext());
                             newPropertiesfrom_api.add(newProperties);
@@ -221,39 +247,10 @@ public class NewPropertyScreen extends Activity {
                 });
     }
 
-    public void get_cities(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait..");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        Ion.with(this)
-                .load(Session.SERVER_URL+"cities.php")
-                .asJsonArray()
-                .setCallback(new FutureCallback<JsonArray>() {
-                    @Override
-                    public void onCompleted(Exception e, JsonArray result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
-                        try {
-                            for (int i=0;i<result.size();i++){
-                                Log.e("response",result.get(i).toString());
-                                Cities cities = new Cities(result.get(i).getAsJsonObject(),NewPropertyScreen.this);
-                                citiesfrom_api.add(cities);
-                            }
 
-                        }catch (Exception e1){
-                            e1.printStackTrace();
-                        }
-
-                    }
-                });
-    }
 
     public void get_areas(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait..");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        show_progress();
         Ion.with(this)
                 .load(Session.SERVER_URL+"areas.php")
                 .setBodyParameter("city",city_id)
@@ -261,8 +258,7 @@ public class NewPropertyScreen extends Activity {
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
+                        hide_progress();
                         try {
                             for (int i = 0; i < result.size(); i++) {
                                 Areas areas = new Areas(result.get(i).getAsJsonObject(), getApplicationContext(),false);
@@ -275,32 +271,7 @@ public class NewPropertyScreen extends Activity {
                 });
     }
 
-    public void get_categories(){
 
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait..");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        Ion.with(this)
-                .load(Session.SERVER_URL+"category.php")
-                .asJsonArray()
-                .setCallback(new FutureCallback<JsonArray>() {
-                    @Override
-                    public void onCompleted(Exception e, JsonArray result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
-                        try {
-                            for (int i=0;i<result.size();i++){
-                                Category category = new Category(result.get(i).getAsJsonObject(),getApplicationContext(),false);
-                                categoriesfrom_api.add(category);
-                            }
-                        }catch (Exception e1){
-                            e1.printStackTrace();
-                        }
-
-                    }
-                });
-    }
 
 
     public Dialog onCreateDialogSingleChoice() {

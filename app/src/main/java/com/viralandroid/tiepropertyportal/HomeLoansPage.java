@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class HomeLoansPage extends Activity {
     TextView type,bank;
     String bank_id;
     SwipeRefreshLayout swipeRefreshLayout;
+    LinearLayout progress_holder;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -53,6 +55,8 @@ public class HomeLoansPage extends Activity {
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         back_btn = (ImageView) findViewById(R.id.back_btn);
         add_home_loan = (ImageView) findViewById(R.id.add_home_loan);
+        progress_holder = (LinearLayout) findViewById(R.id.progress_holder);
+        progress_holder.setVisibility(View.GONE);
 
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,12 +193,17 @@ public class HomeLoansPage extends Activity {
 
     }
 
+    public void show_progress() {
+        progress_holder.setVisibility(View.VISIBLE);
+    }
+
+    public void hide_progress(){
+        progress_holder.setVisibility(View.GONE);
+    }
+
 
     public void get_home_loans(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        show_progress();
         Ion.with(this)
                 .load(Session.SERVER_URL+"homeloan-list.php")
                 .setBodyParameter("agent_id",Session.GetUserId(this))
@@ -202,8 +211,7 @@ public class HomeLoansPage extends Activity {
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
+                        hide_progress();
                         try {
                             for (int i = 0; i < result.size(); i++) {
                                 HomeLoans homeLoans = new HomeLoans(result.get(i).getAsJsonObject(), HomeLoansPage.this);

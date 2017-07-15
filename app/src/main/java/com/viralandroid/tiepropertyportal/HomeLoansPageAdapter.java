@@ -23,7 +23,7 @@ public class HomeLoansPageAdapter extends RecyclerView.Adapter<HomeLoansPageAdap
     LayoutInflater inflater;
     ArrayList<HomeLoans> homeLoans;
     ArrayList<Banks> banks;
-    int lastPosition = -1;
+//    int lastPosition = -1;
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder{
         TextView name,address,phone,email,property,type,bank;
@@ -81,11 +81,11 @@ public class HomeLoansPageAdapter extends RecyclerView.Adapter<HomeLoansPageAdap
             }
         });
 
-        if (position > lastPosition){
-            Animation animation = AnimationUtils.loadAnimation(mContext,R.anim.animation);
-            holder.itemView.startAnimation(animation);
-            lastPosition = position;
-        }
+//        if (position > lastPosition){
+//            Animation animation = AnimationUtils.loadAnimation(mContext,R.anim.animation);
+//            holder.itemView.startAnimation(animation);
+//            lastPosition = position;
+//        }
 
 
     }

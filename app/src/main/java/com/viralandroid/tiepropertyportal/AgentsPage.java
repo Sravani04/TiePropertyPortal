@@ -13,8 +13,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,6 +28,7 @@ import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.ProgressCallback;
@@ -50,7 +50,7 @@ public class AgentsPage extends Activity{
     ImageView item_image;
     int ASK_MULTIPLE_PERMISSION_REQUEST_CODE;
     ArrayList<Cities> citiesfrom_api;
-    SwipeRefreshLayout swipeRefreshLayout;
+    LinearLayout progress_holder;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -64,7 +64,9 @@ public class AgentsPage extends Activity{
                 AgentsPage.this.onBackPressed();
             }
         });
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
+
+        progress_holder = (LinearLayout) findViewById(R.id.progress_holder);
+        progress_holder.setVisibility(View.GONE);
         listView = (ListView) findViewById(R.id.agents_list);
         agentsfrom_api = new ArrayList<>();
         citiesfrom_api = new ArrayList<>();
@@ -78,14 +80,16 @@ public class AgentsPage extends Activity{
             }
         });
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(false);
-                finish();
-                startActivity(getIntent());
+
+
+        JsonParser jsonParser = new JsonParser();
+        if (!Session.GetCities(AgentsPage.this).equals("-1")){
+            JsonArray jsonArray = (JsonArray) jsonParser.parse(Session.GetCities(AgentsPage.this));
+            for (int i=0;i<jsonArray.size();i++){
+                Cities cities = new Cities(jsonArray.get(i).getAsJsonObject(),AgentsPage.this);
+                citiesfrom_api.add(cities);
             }
-        });
+        }
 
 
 
@@ -233,17 +237,22 @@ public class AgentsPage extends Activity{
         });
 
         get_agents();
-        get_cities();
+
 
 
 
     }
 
+    public void show_progress(){
+        progress_holder.setVisibility(View.VISIBLE);
+    }
+
+    public void hide_progress(){
+        progress_holder.setVisibility(View.GONE);
+    }
+
     public void get_agents(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+       show_progress();
         Ion.with(this)
                 .load(Session.SERVER_URL+"ba-list.php")
                 .setBodyParameter("agent_id",Session.GetUserId(getApplicationContext()))
@@ -251,8 +260,7 @@ public class AgentsPage extends Activity{
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
+                        hide_progress();
                         for (int i=0;i<result.size();i++){
                             Agents agents = new Agents(result.get(i).getAsJsonObject(),getApplicationContext());
                             agentsfrom_api.add(agents);
@@ -263,37 +271,17 @@ public class AgentsPage extends Activity{
 
     }
 
-    public void get_cities(){
-        Ion.with(this)
-                .load(Session.SERVER_URL+"cities.php")
-                .asJsonArray()
-                .setCallback(new FutureCallback<JsonArray>() {
-                    @Override
-                    public void onCompleted(Exception e, JsonArray result) {
-                        try {
-                            for (int i=0;i<result.size();i++){
-                                Log.e("response",result.get(i).toString());
-                                Cities cities = new Cities(result.get(i).getAsJsonObject(),AgentsPage.this);
-                                citiesfrom_api.add(cities);
-                            }
 
-                        }catch (Exception e1){
-                            e1.printStackTrace();
-                        }
-
-                    }
-                });
-    }
 
 
     public void show_images(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(AgentsPage.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        ASK_MULTIPLE_PERMISSION_REQUEST_CODE);
-                return;
-            }
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if (ActivityCompat.checkSelfPermission(AgentsPage.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+//                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE},
+//                        ASK_MULTIPLE_PERMISSION_REQUEST_CODE);
+//                return;
+//            }
+//        }
         final CharSequence[] items = {"camera","gallery"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("select_image");
@@ -345,12 +333,7 @@ public class AgentsPage extends Activity{
     private void upload_image(){
         final ProgressBar progressBar = new ProgressBar(this);
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait image is loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setIndeterminate(false);
-        progressDialog.setProgress(0);
-        progressDialog.show();
+       show_progress();
         Ion.with(this)
                 .load(Session.SERVER_URL+"agent-image.php")
                 .uploadProgressBar(progressBar)
@@ -368,8 +351,7 @@ public class AgentsPage extends Activity{
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        if(progressDialog!=null)
-                            progressDialog.dismiss();
+                        hide_progress();
                         if(e!=null)
                             e.printStackTrace();
                         else {

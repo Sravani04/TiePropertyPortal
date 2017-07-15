@@ -50,11 +50,13 @@ public class PropertiesListAdapter extends BaseAdapter {
         TextView city = (TextView) item_view.findViewById(R.id.city);
         TextView area = (TextView) item_view.findViewById(R.id.area);
 
-        Picasso.with(context).load(properties.get(i).images.get(0).image).into(property_image);
+        Picasso.with(context).load(properties.get(i).image).into(property_image);
         title.setText(properties.get(i).title);
         code.setText(properties.get(i).prop_code);
         city.setText(properties.get(i).location);
-        area.setText(properties.get(i).area_title);
+        area.setText(properties.get(i).area);
+
+
         return item_view;
     }
 }

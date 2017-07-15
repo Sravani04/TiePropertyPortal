@@ -51,18 +51,42 @@
         android:background="#000000"
         android:orientation="vertical"></LinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeToRefresh"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/home_loan_list"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#d3d3d3" />
+            android:gravity="center"
+            android:paddingBottom="50dp"
+            android:id="@+id/progress_holder">
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+            <com.singh.daman.proprogressviews.DottedArcProgress
+                android:id="@+id/progress_view"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/progress_rounded_corners"
+                app:dots_color="@android:color/holo_red_dark"
+                app:dots_radius="30dp" />
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeToRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/home_loan_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    </RelativeLayout>
+
 
 
 

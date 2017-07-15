@@ -21,12 +21,14 @@ import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.Response;
@@ -48,12 +50,16 @@ public class CallbackCustomersPage extends Activity {
     ArrayList<Properties> propertiesfrom_api;
     CallbackCustomersAdapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
+    ArrayList<Cities> citiesfrom_api;
+    LinearLayout progress_holder;
     public void onCreate(Bundle savedinstanceState) {
         super.onCreate(savedinstanceState);
         setContentView(R.layout.add_callback_customer_list);
         add_call = (ImageView) findViewById(R.id.add_call);
         recyclerView = (RecyclerView) findViewById(R.id.callback_customers_list);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
+        progress_holder = (LinearLayout) findViewById(R.id.progress_holder);
+        progress_holder.setVisibility(View.GONE);
         back_btn = (ImageView) findViewById(R.id.back_btn);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +69,7 @@ public class CallbackCustomersPage extends Activity {
         });
         callbackCustomersfrom_api = new ArrayList<>();
         propertiesfrom_api = new ArrayList<>();
+        citiesfrom_api = new ArrayList<>();
 
         if (getIntent()!=null && getIntent().hasExtra("agentId")){
             agent_id = getIntent().getStringExtra("agentId");
@@ -81,6 +88,24 @@ public class CallbackCustomersPage extends Activity {
                 startActivity(getIntent());
             }
         });
+
+//        JsonParser jsonParser = new JsonParser();
+//        if (!Session.GetAreas(CallbackCustomersPage.this).equals("-1")){
+//            JsonArray parse = (JsonArray) jsonParser.parse(Session.GetAreas(CallbackCustomersPage.this));
+//            for (int i=0;i<parse.size();i++){
+//                Properties properties = new Properties(parse.get(i).getAsJsonObject(),CallbackCustomersPage.this);
+//                propertiesfrom_api.add(properties);
+//            }
+//        }
+
+        JsonParser jsonParser = new JsonParser();
+        if (!Session.GetCities(CallbackCustomersPage.this).equals("-1")){
+            JsonArray jsonArray = (JsonArray) jsonParser.parse(Session.GetCities(CallbackCustomersPage.this));
+            for (int i=0;i<jsonArray.size();i++){
+                Cities cities = new Cities(jsonArray.get(i).getAsJsonObject(),CallbackCustomersPage.this);
+                citiesfrom_api.add(cities);
+            }
+        }
 
 
         add_call.setOnClickListener(new View.OnClickListener() {
@@ -193,15 +218,40 @@ public class CallbackCustomersPage extends Activity {
     }
 
 
-    public void bindMyReclyclerView(){
+    public void show_progress(){
+        progress_holder.setVisibility(View.VISIBLE);
+    }
 
+    public void hide_progress(){
+        progress_holder.setVisibility(View.GONE);
+    }
+
+    public void get_properties(){
+       show_progress();
+        Ion.with(this)
+                .load(Session.SERVER_URL+"ad-properties.php")
+                .setBodyParameter("agent_id",Session.GetUserId(CallbackCustomersPage.this))
+                .asJsonArray()
+                .setCallback(new FutureCallback<JsonArray>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonArray result) {
+                        try {
+                            hide_progress();
+                            Log.e("res",result.toString());
+                            for (int i = 0; i < result.size(); i++) {
+                                Properties properties = new Properties(result.get(i).getAsJsonObject(), CallbackCustomersPage.this);
+                                propertiesfrom_api.add(properties);
+                            }
+                            adapter.notifyDataSetChanged();
+                        }catch (Exception e1){
+                            e1.printStackTrace();
+                        }
+                    }
+                });
     }
 
     public void get_callback_customers(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait..");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        show_progress();
         Ion.with(this)
                 .load(Session.SERVER_URL+"callback_customers.php")
                 .setBodyParameter("agent_id",Session.GetUserId(CallbackCustomersPage.this))
@@ -209,8 +259,7 @@ public class CallbackCustomersPage extends Activity {
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        if (progressDialog!=null)
-                            progressDialog.dismiss();
+                        hide_progress();
                         for (int i=0;i<result.size();i++) {
                                 CallbackCustomers callback = new CallbackCustomers(result.get(i).getAsJsonObject(), getApplicationContext());
                                 callbackCustomersfrom_api.add(callback);
@@ -224,48 +273,6 @@ public class CallbackCustomersPage extends Activity {
     }
 
 
-    public void get_properties(){
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("please wait");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-        Ion.with(this)
-                .load(Session.SERVER_URL+"properties.php")
-                .asJsonArray()
-                .withResponse()
-                .setCallback(new FutureCallback<Response<JsonArray>>() {
-                    @Override
-                    public void onCompleted(Exception e, Response<JsonArray> result) {
-                        try {
-                            if (progressDialog != null)
-                                progressDialog.dismiss();
-                            Log.e("response", result.getServedFrom().toString());
-
-
-                            if (e != null) {
-                                e.printStackTrace();
-                                Log.e("error", e.getLocalizedMessage());
-
-                            } else
-                                try {
-                                    for (int i = 0; i < result.getResult().size(); i++) {
-                                        Properties properties = new Properties(result.getResult().get(i).getAsJsonObject(), CallbackCustomersPage.this);
-                                        propertiesfrom_api.add(properties);
-                                    }
-                                    adapter.notifyDataSetChanged();
-
-                                } catch (Exception e1) {
-                                    e1.printStackTrace();
-                                }
-                        }catch (Exception e1){
-                            e1.printStackTrace();
-                        }
-
-
-                    }
-                });
-    }
-
     public Dialog onCreateDialogSingleChoice() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -275,7 +282,7 @@ public class CallbackCustomersPage extends Activity {
 
             array[i] = propertiesfrom_api.get(i).title +"  "+ propertiesfrom_api.get(i).prop_code;
         }
-        builder.setTitle("Select City").setSingleChoiceItems(array, 0, new DialogInterface.OnClickListener() {
+        builder.setTitle("Select Property").setSingleChoiceItems(array, 0, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int i) {
