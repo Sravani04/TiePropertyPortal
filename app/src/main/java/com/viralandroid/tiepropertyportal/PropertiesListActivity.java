@@ -187,7 +187,7 @@ public class PropertiesListActivity extends Activity {
 //                                        intent.putExtra("property",properties);
 //                                        intent.putExtra("mobile",mobile);
 //                                        startActivity(intent);
-                                        openApp(PropertiesListActivity.this, "in.tieproperty.app", oldProperties);
+                                        openApp(PropertiesListActivity.this, "in.tiepropertymainapp.app", oldProperties);
                                     }
                                     adapter.notifyDataSetChanged();
 
