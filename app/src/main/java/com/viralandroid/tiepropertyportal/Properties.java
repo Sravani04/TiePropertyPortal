@@ -2,6 +2,7 @@ package com.viralandroid.tiepropertyportal;
 
 import android.content.Context;
 
+import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 
 import java.io.Serializable;
@@ -21,7 +22,7 @@ public class Properties implements Serializable {
         location = jsonObject.get("location").getAsString();
         image = jsonObject.get("image").getAsString();
         city = jsonObject.get("city").getAsString();
-        area = jsonObject.get("area").getAsString();
+        area = jsonObject.get("area") != JsonNull.INSTANCE ?jsonObject.get("area").getAsString() : null;
         category = jsonObject.get("category").getAsString();
         prices = jsonObject.get("prices").getAsString();
         direct_commission = jsonObject.get("direct_commission").getAsString();

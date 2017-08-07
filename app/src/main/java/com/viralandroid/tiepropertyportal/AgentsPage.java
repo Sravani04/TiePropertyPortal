@@ -112,7 +112,7 @@ public class AgentsPage extends Activity{
                 final  EditText phone = (EditText) form.findViewById(R.id.phone);
                 final  EditText aadhar = (EditText) form.findViewById(R.id.aadhar);
                 final  EditText pan_card = (EditText) form.findViewById(R.id.pan_card);
-                status = (TextView) form.findViewById(R.id.status);
+               // status = (TextView) form.findViewById(R.id.status);
                 TextView submit_btn = (TextView) form.findViewById(R.id.submit_btn);
                 ImageView close_btn = (ImageView) form.findViewById(R.id.close_btn);
                 ImageView edit_ba = (ImageView) form.findViewById(R.id.edit_ba);
@@ -132,13 +132,13 @@ public class AgentsPage extends Activity{
                     }
                 });
 
-                status.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Dialog dialog = getStatus();
-                        dialog.show();
-                    }
-                });
+//                status.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Dialog dialog = getStatus();
+//                        dialog.show();
+//                    }
+//                });
 
                 submit_btn.setOnClickListener(new View.OnClickListener() {
                     @Override

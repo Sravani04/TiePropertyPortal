@@ -56,11 +56,33 @@ public class TrendingPropertiesAdapter  extends BaseAdapter {
         final ImageView imageView = (ImageView) itemView.findViewById(R.id.property_image);
 //        LinearLayout trending_slide = (LinearLayout) itemView.findViewById(R.id.trending_slide);
         final TextView title = (TextView) itemView.findViewById(R.id.title);
+        TextView code = (TextView) itemView.findViewById(R.id.code);
+        TextView location = (TextView) itemView.findViewById(R.id.location);
+        TextView area = (TextView) itemView.findViewById(R.id.area);
+        TextView cat = (TextView) itemView.findViewById(R.id.cat);
+        TextView direct_comm = (TextView) itemView.findViewById(R.id.direct_comm);
+        TextView override_comm = (TextView) itemView.findViewById(R.id.override_comm);
+
+        title.setText(trendingProperties.get(position).title);
+        code.setText(trendingProperties.get(position).prop_code);
+        location.setText(trendingProperties.get(position).location);
+        area.setText(trendingProperties.get(position).area);
+        cat.setText(trendingProperties.get(position).category);
+        direct_comm.setText("Direct COMM:"+trendingProperties.get(position).direct_commission);
+        override_comm.setText("Override COMM:"+trendingProperties.get(position).override_commission);
+
+        if (Session.GetLevelId(context).equals("1")){
+            direct_comm.setVisibility(View.VISIBLE);
+            override_comm.setVisibility(View.VISIBLE);
+        }else {
+            direct_comm.setVisibility(View.GONE);
+            override_comm.setVisibility(View.VISIBLE);
+        }
 
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.get_single_property(trendingProperties.get(position).property_id);
+                activity.get_single_property(trendingProperties.get(position).id);
             }
         });
 
@@ -78,13 +100,13 @@ public class TrendingPropertiesAdapter  extends BaseAdapter {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.get_single_property(trendingProperties.get(position).property_id);
+                activity.get_single_property(trendingProperties.get(position).id);
                 Log.e("id",trendingProperties.get(position).id);
 
 
             }
         });
-        title.setText(trendingProperties.get(position).property_name);
+
         return itemView;
     }
 

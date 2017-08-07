@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
  * Created by T on 26-05-2017.
  */
 
-public class PropertiesListActivity extends Activity {
+public class PropertiesListActivity extends Activity implements AbsListView.OnScrollListener{
     ImageView back_btn,drop_btn;
     ListView listView;
     PropertiesListAdapter adapter;
@@ -42,6 +43,9 @@ public class PropertiesListActivity extends Activity {
     TextView city;
     String citiesId,id;
 
+    private  int previouslast;
+    TextView footer_text;
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -49,6 +53,7 @@ public class PropertiesListActivity extends Activity {
         setContentView(R.layout.property_list);
         back_btn = (ImageView) findViewById(R.id.back_btn);
         listView = (ListView) findViewById(R.id.properties_list);
+
         progress_holder = (LinearLayout) findViewById(R.id.progress_holder);
         progress_holder.setVisibility(View.GONE);
         back_btn.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +97,11 @@ public class PropertiesListActivity extends Activity {
 
 
         });
+        listView.setOnScrollListener(this);
+
+        View footerView =  ((LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_layout, null, false);
+        listView.addFooterView(footerView);
+        footer_text = (TextView) footerView.findViewById(R.id.footer_text);
 
 
         JsonParser jsonParser = new JsonParser();
@@ -134,11 +144,14 @@ public class PropertiesListActivity extends Activity {
 
 
     public void get_properties(){
+        if (propertiesfrom_api.size() == 0)
         show_progress();
         Ion.with(this)
                 .load(Session.SERVER_URL+"ad-properties.php")
                 .setBodyParameter("agent_id",Session.GetUserId(this))
                 .setBodyParameter("city",citiesId)
+                .setBodyParameter("start",String.valueOf(propertiesfrom_api.size()))
+                .setBodyParameter("end","10")
                 .asJsonArray()
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
@@ -146,6 +159,10 @@ public class PropertiesListActivity extends Activity {
                         try {
                            hide_progress();
                             Log.e("trend_prop",result.toString());
+                            if (result.size()<10)
+                                footer_text.setText("End of Properties List");
+                            else
+                                footer_text.setText("Loading Properties List");
                             for (int i = 0; i < result.size(); i++) {
                                 Properties properties = new Properties(result.get(i).getAsJsonObject(), PropertiesListActivity.this);
                                 propertiesfrom_api.add(properties);
@@ -232,6 +249,7 @@ public class PropertiesListActivity extends Activity {
                     city.setText(citiesfrom_api.get(i).title);
                     citiesId = citiesfrom_api.get(i).id;
                     propertiesfrom_api.clear();
+                    adapter.notifyDataSetChanged();
                     get_properties();
                     alertDialog.dismiss();
                 }
@@ -298,4 +316,20 @@ public class PropertiesListActivity extends Activity {
     }
 
 
+    @Override
+    public void onScrollStateChanged(AbsListView absListView, int i) {
+
+    }
+
+    @Override
+    public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+        int lastitem = i + i1;
+        if (lastitem == i2-3){
+            if (previouslast!=lastitem){
+                Log.e("result","last");
+                get_properties();
+                previouslast = lastitem;
+            }
+        }
+    }
 }

@@ -12,14 +12,18 @@ import java.io.Serializable;
  */
 
 public class TrendingProperties implements Serializable {
-    public String id,title,image,link,property_id,property_name;
+    public String id,title,prop_code,location,image,area,category,prices,direct_commission,override_commission;
     public TrendingProperties(JsonObject jsonObject,Context context){
         id = jsonObject.get("id").getAsString();
         title = jsonObject.get("title").getAsString();
+        prop_code = jsonObject.get("prop_code").getAsString();
+        location = jsonObject.get("location").getAsString();
         image = jsonObject.get("image").getAsString();
-        link = jsonObject.get("link").getAsString();
-        property_id = jsonObject.get("property_id").getAsString();
-        property_name = jsonObject.get("property_name") != JsonNull.INSTANCE ? jsonObject.get("property_name").getAsString() : null;
+        area = jsonObject.get("area").getAsString();
+        category = jsonObject.get("category").getAsString();
+        prices = jsonObject.get("prices").getAsString();
+        direct_commission = jsonObject.get("direct_commission").getAsString();
+        override_commission = jsonObject.get("override_commission").getAsString();
 
     }
 }

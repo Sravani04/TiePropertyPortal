@@ -45,8 +45,13 @@ public class SplashActivity extends Activity {
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        Session.SetCities(SplashActivity.this,result.toString());
-                       get_categories();
+                        try {
+                            Session.SetCities(SplashActivity.this,result.toString());
+                            get_categories();
+
+                        }catch (Exception e1){
+                            e1.printStackTrace();
+                        }
 
                     }
                 });
@@ -59,8 +64,13 @@ public class SplashActivity extends Activity {
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                      Session.SetCategories(SplashActivity.this,result.toString());
-                        get_properties();
+                        try {
+                            Session.SetCategories(SplashActivity.this,result.toString());
+                            get_properties();
+                        }catch (Exception e1){
+                            e1.printStackTrace();
+                        }
+
                     }
                 });
     }
@@ -72,15 +82,19 @@ public class SplashActivity extends Activity {
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
-                        Session.SetAreas(SplashActivity.this,result.toString());
-                        if (Session.GetUserId(SplashActivity.this).equals("-1")) {
-                            Intent intent = new Intent(SplashActivity.this, PortalScreen.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                        try {
+                            Session.SetAreas(SplashActivity.this, result.toString());
+                            if (Session.GetUserId(SplashActivity.this).equals("-1")) {
+                                Intent intent = new Intent(SplashActivity.this, PortalScreen.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }catch (Exception e1){
+                            e1.printStackTrace();
                         }
                     }
                 });

@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
  * Created by yellowsoft on 13/7/17.
  */
 
-public class TrendingPropertyActivity extends Activity  {
+public class TrendingPropertyActivity extends Activity  implements AbsListView.OnScrollListener{
     ImageView close_btn,drop_btn;
     ListView listView;
     TrendingPropertiesAdapter trendingPropertiesAdapter;
@@ -43,6 +44,8 @@ public class TrendingPropertyActivity extends Activity  {
     TextView city;
     ArrayList<Cities> categories;
     CityAdapter adapter;
+    private  int previouslast;
+    TextView footer_text;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +102,12 @@ public class TrendingPropertyActivity extends Activity  {
             }
         });
 
+        listView.setOnScrollListener(this);
+
+        View footerView =  ((LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_layout, null, false);
+        listView.addFooterView(footerView);
+        footer_text = (TextView) footerView.findViewById(R.id.footer_text);
+
         JsonParser jsonParser = new JsonParser();
         if (!Session.GetCities(TrendingPropertyActivity.this).equals("-1")) {
             JsonArray parse = (JsonArray) jsonParser.parse(Session.GetCities(TrendingPropertyActivity.this));
@@ -121,16 +130,25 @@ public class TrendingPropertyActivity extends Activity  {
     }
 
     public void get_trending_properties(){
+        if (trendingPropertiesfrom_api.size() == 0)
+        show_progress();
         Ion.with(this)
-                .load(Session.SERVER_URL+"trending-properties.php")
+                .load(Session.SERVER_URL+"ad-trending-properties.php")
                 .setBodyParameter("agent_id",Session.GetUserId(this))
                 .setBodyParameter("city",city_id)
+                .setBodyParameter("start",String.valueOf(trendingPropertiesfrom_api.size()))
+                .setBodyParameter("end","10")
                 .asJsonArray()
                 .setCallback(new FutureCallback<JsonArray>() {
                     @Override
                     public void onCompleted(Exception e, JsonArray result) {
+                        hide_progress();
                         try {
                             Log.e("trend_prop",result.toString());
+                            if (result.size()<10)
+                                footer_text.setText("End of Properties List");
+                            else
+                                footer_text.setText("Loading Properties List");
                             for (int i = 0; i < result.size(); i++) {
                                 TrendingProperties trendingProperties = new TrendingProperties(result.get(i).getAsJsonObject(), TrendingPropertyActivity.this);
                                 trendingPropertiesfrom_api.add(trendingProperties);
@@ -173,6 +191,7 @@ public class TrendingPropertyActivity extends Activity  {
                     city.setText(categories.get(i).title);
                     city_id = categories.get(i).id;
                     trendingPropertiesfrom_api.clear();
+                    adapter.notifyDataSetChanged();
                     get_trending_properties();
                     alertDialog.dismiss();
                 }
@@ -304,4 +323,20 @@ public class TrendingPropertyActivity extends Activity  {
 
     }
 
+    @Override
+    public void onScrollStateChanged(AbsListView absListView, int i) {
+
+    }
+
+    @Override
+    public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+        int lastitem = i + i1;
+        if (lastitem == i2-3){
+            if (previouslast!=lastitem){
+                Log.e("result","last");
+                get_trending_properties();
+                previouslast = lastitem;
+            }
+        }
+    }
 }
