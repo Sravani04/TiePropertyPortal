@@ -17,7 +17,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="250dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:orientation="horizontal">
@@ -25,7 +25,7 @@
                 <ImageView
                     android:id="@+id/property_image"
                     android:layout_width="140dp"
-                    android:layout_height="140dp"
+                    android:layout_height="190dp"
                     android:layout_marginTop="10dp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
@@ -34,10 +34,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"
                     android:orientation="vertical">
 
                     <TextView
@@ -45,6 +43,49 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/cat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/direct_comm"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/override_comm"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="3dp"
                         android:text="TextView" />
 
                 </LinearLayout>

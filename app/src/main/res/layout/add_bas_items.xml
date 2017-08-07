@@ -325,27 +325,29 @@
                     android:hint="Pan Card" />
 
                 <TextView
-                    android:text="Status"
+                    android:id="@+id/textView27"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:id="@+id/textView27"
                     android:layout_marginTop="5dp"
                     android:gravity="center_vertical|center_horizontal"
-                    android:textColor="#000" />
+                    android:text="Status"
+                    android:textColor="#000"
+                    android:visibility="gone" />
 
                 <TextView
+                    android:id="@+id/status"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/status"
                     android:layout_marginTop="5dp"
-                    android:paddingLeft="10dp"
                     android:background="@drawable/border"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="10dp"
+                    android:textColor="#000"
                     android:textColorHint="#000"
                     android:textSize="15sp"
-                    android:textColor="#000"
-                    android:gravity="center_vertical" />
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:orientation="vertical"
