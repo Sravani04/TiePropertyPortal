@@ -101,7 +101,7 @@ public class EditReportListActivity extends Activity {
                                 public void onCompleted(Exception e, JsonObject result) {
                                     if (result.get("status").getAsString().equals("Success")){
                                         Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
-                                         EditReportListActivity.this.onBackPressed();
+                                         finish();
                                     }else {
                                         Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
                                     }
