@@ -147,6 +147,7 @@ public class HomeLoansPage extends Activity {
                             Toast.makeText(HomeLoansPage.this, "Please Enter Bank", Toast.LENGTH_SHORT).show();
                             bank.requestFocus();
                         }else {
+                            show_progress();
                             Ion.with(HomeLoansPage.this)
                                     .load(Session.SERVER_URL+"add-homeloan.php")
                                     .setBodyParameter("agent_id",Session.GetUserId(HomeLoansPage.this))
@@ -161,11 +162,16 @@ public class HomeLoansPage extends Activity {
                                     .setCallback(new FutureCallback<JsonObject>() {
                                         @Override
                                         public void onCompleted(Exception e, JsonObject result) {
-                                            if (result.get("status").getAsString().equals("Success")){
-                                                Toast.makeText(HomeLoansPage.this,result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
-                                                HomeLoansPage.this.onBackPressed();
-                                            }else {
-                                                Toast.makeText(HomeLoansPage.this,result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
+                                            hide_progress();
+                                            try {
+                                                if (result.get("status").getAsString().equals("Success")) {
+                                                    Toast.makeText(HomeLoansPage.this, result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                                                    HomeLoansPage.this.onBackPressed();
+                                                } else {
+                                                    Toast.makeText(HomeLoansPage.this, result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }catch (Exception e1){
+                                                e1.printStackTrace();
                                             }
                                         }
                                     });

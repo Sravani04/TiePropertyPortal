@@ -187,6 +187,7 @@ public class SiteVisitScreen extends Activity{
                             Toast.makeText(getApplicationContext(),"Please Enter Property",Toast.LENGTH_SHORT).show();
                             property.requestFocus();
                         }else {
+                            show_progress();
                             Ion.with(getApplicationContext())
                                     .load(Session.SERVER_URL+"site-visit.php")
                                     .setBodyParameter("agent_id",Session.GetUserId(getApplicationContext()))
@@ -200,12 +201,17 @@ public class SiteVisitScreen extends Activity{
                                     .setCallback(new FutureCallback<JsonObject>() {
                                         @Override
                                         public void onCompleted(Exception e, JsonObject result) {
-                                            if (result.get("status").getAsString().equals("Success")){
-                                                Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
-                                                SiteVisitScreen.this.onBackPressed();
-                                            }else {
-                                                Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
+                                            hide_progress();
+                                            try {
+                                                if (result.get("status").getAsString().equals("Success")) {
+                                                    Toast.makeText(getApplicationContext(), result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                                                    SiteVisitScreen.this.onBackPressed();
+                                                } else {
+                                                    Toast.makeText(getApplicationContext(), result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
 
+                                                }
+                                            }catch (Exception e1){
+                                                e1.printStackTrace();
                                             }
                                         }
                                     });

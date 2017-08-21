@@ -113,6 +113,7 @@ public class ReportListActivity extends Activity {
                         }
 
                         else {
+                            show_progress();
                             Ion.with(getApplicationContext())
                                     .load(Session.SERVER_URL+"add-report.php")
                                     .setBodyParameter("agent_id",Session.GetUserId(ReportListActivity.this))
@@ -124,11 +125,16 @@ public class ReportListActivity extends Activity {
                                     .setCallback(new FutureCallback<JsonObject>() {
                                         @Override
                                         public void onCompleted(Exception e, JsonObject result) {
-                                            if (result.get("status").getAsString().equals("Success")){
-                                                Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
-                                                ReportListActivity.this.onBackPressed();
-                                            }else {
-                                                Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
+                                            hide_progress();
+                                            try {
+                                                if (result.get("status").getAsString().equals("Success")) {
+                                                    Toast.makeText(getApplicationContext(), result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                                                    ReportListActivity.this.onBackPressed();
+                                                } else {
+                                                    Toast.makeText(getApplicationContext(), result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }catch (Exception e1){
+                                                e1.printStackTrace();
                                             }
                                         }
                                     });

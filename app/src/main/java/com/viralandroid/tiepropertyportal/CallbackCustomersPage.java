@@ -177,6 +177,7 @@ public class CallbackCustomersPage extends Activity {
                             Toast.makeText(CallbackCustomersPage.this, "Please Enter Message", Toast.LENGTH_SHORT).show();
                             message.requestFocus();
                         }else {
+                            show_progress();
                             Ion.with(CallbackCustomersPage.this)
                                     .load(Session.SERVER_URL+"callback_customer.php")
                                     .setBodyParameter("name",name_string)
@@ -190,11 +191,16 @@ public class CallbackCustomersPage extends Activity {
                                     .setCallback(new FutureCallback<JsonObject>() {
                                         @Override
                                         public void onCompleted(Exception e, JsonObject result) {
-                                            if (result.get("status").getAsString().equals("Success")){
-                                                Toast.makeText(CallbackCustomersPage.this,result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
-                                                finish();
-                                            }else {
-                                                Toast.makeText(CallbackCustomersPage.this,result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
+                                            hide_progress();
+                                            try {
+                                                if (result.get("status").getAsString().equals("Success")) {
+                                                    Toast.makeText(CallbackCustomersPage.this, result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                                                    finish();
+                                                } else {
+                                                    Toast.makeText(CallbackCustomersPage.this, result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }catch (Exception e1){
+                                                e1.printStackTrace();
                                             }
                                         }
                                     });

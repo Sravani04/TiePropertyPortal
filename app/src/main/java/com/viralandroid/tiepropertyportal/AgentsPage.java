@@ -186,6 +186,7 @@ public class AgentsPage extends Activity{
                         }
 
                         else {
+                            show_progress();
                             Ion.with(getApplicationContext())
                                     .load(Session.SERVER_URL+"add-ba.php")
                                     .setBodyParameter("agent_id",Session.GetUserId(AgentsPage.this))
@@ -203,16 +204,21 @@ public class AgentsPage extends Activity{
                                     .setCallback(new FutureCallback<JsonObject>() {
                                         @Override
                                         public void onCompleted(Exception e, JsonObject result) {
-                                            if (result.get("status").getAsString().equals("Success")){
-                                                Log.e("resulr",result.toString());
-                                                if (selected_image_path.equals("")){
-                                                    add_success();
-                                                }else {
-                                                    upload_image();
+                                            hide_progress();
+                                            try {
+                                                if (result.get("status").getAsString().equals("Success")) {
+                                                    Log.e("resulr", result.toString());
+                                                    if (selected_image_path.equals("")) {
+                                                        add_success();
+                                                    } else {
+                                                        upload_image();
+                                                    }
+                                                    finish();
+                                                } else {
+                                                    Toast.makeText(getApplicationContext(), result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
                                                 }
-                                                finish();
-                                            }else {
-                                                Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
+                                            }catch (Exception e1){
+                                                e1.printStackTrace();
                                             }
                                         }
                                     });

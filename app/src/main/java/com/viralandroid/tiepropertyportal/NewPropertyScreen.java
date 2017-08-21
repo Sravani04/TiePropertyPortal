@@ -173,6 +173,7 @@ public class NewPropertyScreen extends Activity {
                             Toast.makeText(NewPropertyScreen.this,"Please Enter Area",Toast.LENGTH_SHORT).show();
                             area.requestFocus();
                         }else {
+                            show_progress();
                             Ion.with(getApplicationContext())
                                     .load(Session.SERVER_URL+"new-property.php")
                                     .setBodyParameter("agent_id",Session.GetUserId(getApplicationContext()))
@@ -187,12 +188,17 @@ public class NewPropertyScreen extends Activity {
                                     .setCallback(new FutureCallback<JsonObject>() {
                                         @Override
                                         public void onCompleted(Exception e, JsonObject result) {
-                                            if (result.get("status").getAsString().equals("Success")){
-                                                Log.e("resulr",result.toString());
-                                                Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
-                                                finish();
-                                            }else {
-                                                Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
+                                            hide_progress();
+                                            try {
+                                                if (result.get("status").getAsString().equals("Success")) {
+                                                    Log.e("resulr", result.toString());
+                                                    Toast.makeText(getApplicationContext(), result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                                                    finish();
+                                                } else {
+                                                    Toast.makeText(getApplicationContext(), result.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }catch (Exception e1){
+                                                e1.printStackTrace();
                                             }
                                         }
                                     });

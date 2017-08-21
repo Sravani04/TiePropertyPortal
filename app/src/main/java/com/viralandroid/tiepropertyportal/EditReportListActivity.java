@@ -102,6 +102,7 @@ public class EditReportListActivity extends Activity {
                                     if (result.get("status").getAsString().equals("Success")){
                                         Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
                                          finish();
+                                        get_reports();
                                     }else {
                                         Toast.makeText(getApplicationContext(),result.get("message").getAsString(),Toast.LENGTH_SHORT).show();
                                     }
