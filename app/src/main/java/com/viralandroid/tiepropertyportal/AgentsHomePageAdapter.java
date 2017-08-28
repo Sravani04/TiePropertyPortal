@@ -42,7 +42,7 @@ public class AgentsHomePageAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
+    public View getView(final int position, View view, ViewGroup viewGroup) {
         View item_view = inflater.inflate(R.layout.agents_list,null);
         final ImageView agent_image = (ImageView) item_view.findViewById(R.id.agent_image);
         final TextView  name = (TextView) item_view.findViewById(R.id.name);
@@ -59,6 +59,7 @@ public class AgentsHomePageAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context,EditBasPage.class);
+                intent.putExtra("agents",agents.get(position));
                 context.startActivity(intent);
             }
         });

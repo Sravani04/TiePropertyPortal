@@ -28,6 +28,7 @@ import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.koushikdutta.ion.ProgressCallback;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class EditBasPage extends Activity {
     int ASK_MULTIPLE_PERMISSION_REQUEST_CODE;
     String city_id;
     ArrayList<Cities> citiesfrom_api;
+    Agents agents;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -63,6 +65,10 @@ public class EditBasPage extends Activity {
         back_btn = (ImageView) findViewById(R.id.back_btn);
         status = (TextView) findViewById(R.id.status);
         citiesfrom_api = new ArrayList<>();
+
+        if (getIntent()!=null && getIntent().hasExtra("agents")){
+            agents = (Agents) getIntent().getSerializableExtra("agents");
+        }
 
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +99,18 @@ public class EditBasPage extends Activity {
                 dialog.show();
             }
         });
+
+        fname.setText(agents.fname);
+        lname.setText(agents.lname);
+        email.setText(agents.email);
+        address.setText(agents.address);
+        city.setText(agents.city_id);
+        state.setText(agents.state);
+        phone.setText(agents.phone);
+        aadhar.setText(agents.aadhar);
+        pan_card.setText(agents.pancard);
+        Picasso.with(EditBasPage.this).load(agents.image).placeholder(R.drawable.placeholder_person).into(item_image);
+
 
 
         update_btn.setOnClickListener(new View.OnClickListener() {
@@ -174,7 +192,7 @@ public class EditBasPage extends Activity {
             }
         });
 
-        get_agents();
+       // get_agents();
         get_cities();
 
     }
@@ -204,7 +222,7 @@ public class EditBasPage extends Activity {
                             phone.setText(jsonObject.get("phone").getAsString());
                             aadhar.setText(jsonObject.get("aadhar").getAsString());
                             pan_card.setText(jsonObject.get("pancard").getAsString());
-                            Ion.with(EditBasPage.this).load(jsonObject.get("image").getAsString()).withBitmap().placeholder(R.drawable.placeholder_person).intoImageView(item_image);
+
                             status.setText(jsonObject.get("status").getAsString());
                         }catch (Exception e1){
                             e1.printStackTrace();
