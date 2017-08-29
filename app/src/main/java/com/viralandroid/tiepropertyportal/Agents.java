@@ -26,7 +26,7 @@ public class Agents implements Serializable {
         aadhar = jsonObject.get("aadhar").getAsString();
         pancard = jsonObject.get("pancard").getAsString();
         level_id =jsonObject.get("level").getAsJsonObject().get("level_id").getAsString();
-        level_title = jsonObject.get("city").getAsJsonObject().get("title").getAsString();
+        level_title = jsonObject.get("level").getAsJsonObject().get("title").getAsString();
         image = jsonObject.get("image").getAsString();
     }
 }

@@ -162,18 +162,20 @@
 
 
                 <EditText
+                    android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/address"
-                    android:hint="Address"
-                    android:textSize="15sp"
-                    android:textColor="#000"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/border"
-                    android:textColorHint="#000"
+                    android:ems="10"
+                    android:hint="Address"
+                    android:inputType="textPersonName|textMultiLine"
+                    android:maxLines="4"
                     android:paddingLeft="10dp"
-                    android:layout_marginTop="5dp" />
+                    android:textColor="#000"
+                    android:textColorHint="#000"
+                    android:textSize="15sp"
+                    android:singleLine="false"/>
 
                 <TextView
                     android:text="City"

@@ -86,11 +86,15 @@
                     android:layout_height="100dp"
                     android:background="@drawable/border"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:inputType="textPersonName|textMultiLine"
                     android:paddingLeft="10dp"
                     android:textColor="#000"
                     android:textColorHint="#000"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:lines="30"
+                    android:maxLines="30"
+                    android:minLines="20"
+                    android:singleLine="false"/>
 
                 <TextView
                     android:id="@+id/textView20"
@@ -109,11 +113,15 @@
                     android:layout_height="100dp"
                     android:background="@drawable/border"
                     android:ems="10"
-                    android:inputType="textPersonName"
+                    android:inputType="textPersonName|textMultiLine"
                     android:paddingLeft="10dp"
                     android:textColor="#000"
                     android:textColorHint="#000"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:lines="30"
+                    android:maxLines="30"
+                    android:minLines="20"
+                    android:singleLine="false"/>
 
                 <TextView
                     android:id="@+id/textView21"
@@ -133,10 +141,14 @@
                     android:background="@drawable/border"
                     android:ems="10"
                     android:gravity="center_vertical"
-                    android:inputType="text"
+                    android:inputType="text|textMultiLine"
                     android:paddingLeft="10dp"
                     android:textColor="#000"
-                    android:textColorHint="#000" />
+                    android:textColorHint="#000"
+                    android:lines="30"
+                    android:maxLines="30"
+                    android:minLines="20"
+                    android:singleLine="false"/>
 
                 <TextView
                     android:id="@+id/textView25"
@@ -155,11 +167,15 @@
                     android:background="@drawable/border"
                     android:ems="10"
                     android:gravity="center_vertical"
-                    android:inputType="textPersonName"
+                    android:inputType="textPersonName|textMultiLine"
                     android:paddingLeft="10dp"
                     android:textColor="#000"
                     android:textColorHint="#000"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:lines="30"
+                    android:maxLines="30"
+                    android:minLines="20"
+                    android:singleLine="false"/>
 
                 <LinearLayout
                     android:orientation="vertical"

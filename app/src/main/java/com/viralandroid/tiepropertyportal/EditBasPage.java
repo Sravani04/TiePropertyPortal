@@ -104,7 +104,7 @@ public class EditBasPage extends Activity {
         lname.setText(agents.lname);
         email.setText(agents.email);
         address.setText(agents.address);
-        city.setText(agents.city_id);
+        city.setText(agents.city_title);
         state.setText(agents.state);
         phone.setText(agents.phone);
         aadhar.setText(agents.aadhar);
@@ -142,7 +142,7 @@ public class EditBasPage extends Activity {
                 }else if (address_string.equals("")){
                     Toast.makeText(EditBasPage.this,"Please Enter Address",Toast.LENGTH_SHORT).show();
                     address.requestFocus();
-                }else if (city_string.equals("")){
+                }else if (city_string == ""){
                     Toast.makeText(EditBasPage.this,"Please Enter City",Toast.LENGTH_SHORT).show();
                     city.requestFocus();
                 }else if (state_string.equals("")){
@@ -158,6 +158,10 @@ public class EditBasPage extends Activity {
                     Toast.makeText(EditBasPage.this,"Please Enter PanCard number",Toast.LENGTH_SHORT).show();
                     pan_card.requestFocus();
                 }else {
+                    final ProgressDialog progressDialog = new ProgressDialog(EditBasPage.this);
+                    progressDialog.setMessage("please wait..");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
                     Ion.with(getApplicationContext())
                             .load(Session.SERVER_URL+"edit-ba.php")
                             .setBodyParameter("agent_id",Session.GetUserId(EditBasPage.this))
@@ -175,6 +179,8 @@ public class EditBasPage extends Activity {
                             .setCallback(new FutureCallback<JsonObject>() {
                                 @Override
                                 public void onCompleted(Exception e, JsonObject result) {
+                                    if (progressDialog!=null)
+                                        progressDialog.dismiss();
                                     if (result.get("status").getAsString().equals("Success")){
                                         Log.e("resulr",result.toString());
                                         if (selected_image_path.equals("")){

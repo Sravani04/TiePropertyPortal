@@ -41,6 +41,7 @@
         <activity android:name=".TrendingPropertyActivity"></activity>
         <activity android:name=".BASVisitsScreen"></activity>
         <activity android:name=".EditBASVisitPage"></activity>
+        <activity android:name=".ReportDetail"></activity>
 
     </application>
 

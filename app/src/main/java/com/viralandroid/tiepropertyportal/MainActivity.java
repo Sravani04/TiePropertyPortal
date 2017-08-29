@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
     ImageView back_btn,agent_image;
-    TextView agent_name;
+    TextView agent_name,agent_code,level_title;
     LinearLayout agents,callback_customers,commissions,new_property,properties,site_visits,logout_btn,
             edit_btn,reports_list,ba_line,offer_line,new_property_line,home_laons,
             sales_list,sales_list_line,ba_site_visit_line,bas_site_vists,trending_properties;
@@ -64,6 +64,8 @@ public class MainActivity extends Activity {
         ba_site_visit_line = (LinearLayout) findViewById(R.id.ba_site_visit_line);
         bas_site_vists = (LinearLayout) findViewById(R.id.bas_site_vists);
         trending_properties = (LinearLayout) findViewById(R.id.trending_properties);
+        agent_code = (TextView) findViewById(R.id.agent_code);
+        level_title = (TextView)  findViewById(R.id.level_title);
 
         citiesfrom_api = new ArrayList<>();
 
@@ -257,8 +259,10 @@ public class MainActivity extends Activity {
                             if (progressDialog != null)
                                 progressDialog.dismiss();
                             JsonObject jsonObject = result.get(0).getAsJsonObject();
-                            agent_name.setText(jsonObject.get("fname").getAsString());
+                            agent_name.setText(jsonObject.get("fname").getAsString() +" "+ jsonObject.get("lname").getAsString());
+                            agent_code.setText(jsonObject.get("code").getAsString());
                             Ion.with(MainActivity.this).load(jsonObject.get("image").getAsString()).withBitmap().placeholder(R.drawable.placeholder_person).intoImageView(agent_image);
+                            level_title.setText( jsonObject.get("level").getAsJsonObject().get("title").getAsString());
                         }catch (Exception e1){
                             e1.printStackTrace();
                         }

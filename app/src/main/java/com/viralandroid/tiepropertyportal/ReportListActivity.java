@@ -44,7 +44,7 @@ import java.util.ArrayList;
 
 public class ReportListActivity extends Activity {
     ImageView back_btn,add_report;
-    RecyclerView recyclerView;
+    ListView listView;
     ReportListAdapter adapter;
     ArrayList<ReportsList> reportsListsfrom_api;
     int ASK_MULTIPLE_PERMISSION_REQUEST_CODE;
@@ -65,13 +65,23 @@ public class ReportListActivity extends Activity {
 
         progress_holder = (LinearLayout) findViewById(R.id.progress_holder);
         progress_holder.setVisibility(View.GONE);
-        recyclerView = (RecyclerView) findViewById(R.id.reports_list);
+        listView = (ListView) findViewById(R.id.reports_list);
         reportsListsfrom_api = new ArrayList<>();
 
         adapter = new ReportListAdapter(this,reportsListsfrom_api);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(ReportListActivity.this,ReportDetail.class);
+                intent.putExtra("task",reportsListsfrom_api.get(i).task);
+                intent.putExtra("pending",reportsListsfrom_api.get(i).pending);
+                intent.putExtra("tomm",reportsListsfrom_api.get(i).tomorrow);
+                intent.putExtra("achiv",reportsListsfrom_api.get(i).achievement);
+                startActivity(intent);
+            }
+        });
+
 
 
 

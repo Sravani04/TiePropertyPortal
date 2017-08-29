@@ -79,7 +79,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="15dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -90,6 +89,24 @@
                             android:paddingLeft="10dp"
                             android:text="TextView"
                             android:textColor="#000" />
+
+                        <TextView
+                            android:id="@+id/agent_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:paddingLeft="10dp"
+                            android:text="TextView"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/level_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:paddingLeft="10dp"
+                            android:text="TextView"
+                            android:textColor="#000000" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -410,7 +427,7 @@
                         android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:paddingLeft="5dp"
-                        android:text="properties"
+                        android:text="Properties"
                         android:textColor="#000000"
                         android:textSize="15sp" />
 

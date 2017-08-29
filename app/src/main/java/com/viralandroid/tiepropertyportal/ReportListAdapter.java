@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by yellowsoft on 13/7/17.
  */
 
-public class ReportListAdapter extends RecyclerView.Adapter<ReportListAdapter.SimpleViewHolder>{
+public class ReportListAdapter extends BaseAdapter{
     LayoutInflater inflater;
     Context context;
     ArrayList<ReportsList> reportsLists;
@@ -28,45 +28,15 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListAdapter.Si
         this.reportsLists = reportsLists;
     }
 
-    public static class SimpleViewHolder extends RecyclerView.ViewHolder{
-        TextView task,pending,tomorrow,achievement,date;
-        ImageView edit_report;
-        public SimpleViewHolder(View view){
-            super(view);
-            task = (TextView) view.findViewById(R.id.task);
-            pending = (TextView) view.findViewById(R.id.pending);
-            tomorrow = (TextView) view.findViewById(R.id.tomorrow);
-            achievement = (TextView) view.findViewById(R.id.achievement);
-            edit_report = (ImageView) view.findViewById(R.id.edit_report);
-            date = (TextView) view.findViewById(R.id.date);
-
-        }
-    }
-
-
 
     @Override
-    public ReportListAdapter.SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(context).inflate(R.layout.reportlist_items, parent, false);
-        return new ReportListAdapter.SimpleViewHolder(view);
+    public int getCount() {
+        return reportsLists.size();
     }
 
     @Override
-    public void onBindViewHolder(ReportListAdapter.SimpleViewHolder holder, final int position) {
-        holder.task.setText(reportsLists.get(position).task);
-        holder.pending.setText(reportsLists.get(position).pending);
-        holder.tomorrow.setText(reportsLists.get(position).tomorrow);
-        holder.achievement.setText(reportsLists.get(position).achievement);
-        holder.date.setText(reportsLists.get(position).date);
-
-        holder.edit_report.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context,EditReportListActivity.class);
-                intent.putExtra("id",reportsLists.get(position).id);
-                context.startActivity(intent);
-            }
-        });
+    public Object getItem(int i) {
+        return null;
     }
 
     @Override
@@ -75,8 +45,31 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListAdapter.Si
     }
 
     @Override
-    public int getItemCount() {
-        return reportsLists.size();
+    public View getView(final int i, View view, ViewGroup viewGroup) {
+        final View itemView = inflater.inflate(R.layout.reportlist_items,null);
+        TextView task = (TextView) itemView.findViewById(R.id.task);
+        TextView pending = (TextView) itemView.findViewById(R.id.pending);
+        TextView tomorrow = (TextView) itemView.findViewById(R.id.tomorrow);
+        TextView achiv = (TextView) itemView.findViewById(R.id.achievement);
+        ImageView edit_report = (ImageView) itemView.findViewById(R.id.edit_report);
+        TextView date  = (TextView) itemView.findViewById(R.id.date);
+
+        task.setText(reportsLists.get(i).task);
+        pending.setText(reportsLists.get(i).pending);
+        tomorrow.setText(reportsLists.get(i).tomorrow);
+        achiv.setText(reportsLists.get(i).achievement);
+        date.setText(reportsLists.get(i).date);
+        edit_report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, EditReportListActivity.class);
+                intent.putExtra("id", reportsLists.get(i).id);
+                context.startActivity(intent);
+            }
+        });
+        return itemView;
     }
+
+
 
 }
